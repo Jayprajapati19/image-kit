@@ -16,7 +16,6 @@ export const authOptions: NextAuthOptions = {
                 if (!credentials?.email || !credentials?.password) {
                     throw new Error("Missing email or password");
                 }
-
                 try {
                     await connectToDatabase();
                     const user = await UserModel.findOne({ email: credentials.email });
