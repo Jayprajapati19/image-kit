@@ -68,10 +68,7 @@ export default function ProductPage() {
         variant,
       });
 
-      // if (!process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID) {
-      //   showNotification("Razorpay key is missing", "error");
-      //   return;
-      // }
+
 
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
@@ -181,8 +178,8 @@ export default function ProductPage() {
               <div
                 key={variant.type}
                 className={`card bg-base-200 cursor-pointer hover:bg-base-300 transition-colors ${selectedVariant?.type === variant.type
-                    ? "ring-2 ring-primary"
-                    : ""
+                  ? "ring-2 ring-primary"
+                  : ""
                   }`}
                 onClick={() => setSelectedVariant(variant)}
               >
@@ -216,7 +213,7 @@ export default function ProductPage() {
                     </div>
                     <div className="flex items-center gap-4">
                       <span className="text-xl font-bold">
-                        ${variant.price.toFixed(2)}
+                        ₹{variant.price.toFixed(2)}
                       </span>
                       <button
                         className="btn btn-primary btn-sm"

@@ -88,9 +88,8 @@ export default function AdminProductForm() {
       <div className="form-control">
         <label className="label">Description</label>
         <textarea
-          className={`textarea textarea-bordered h-24 ${
-            errors.description ? "textarea-error" : ""
-          }`}
+          className={`textarea textarea-bordered h-24 ${errors.description ? "textarea-error" : ""
+            }`}
           {...register("description", { required: "Description is required" })}
         />
         {errors.description && (
@@ -137,7 +136,7 @@ export default function AdminProductForm() {
             </div>
 
             <div className="form-control">
-              <label className="label">Price ($)</label>
+              <label className="label">Price (₹)</label>
               <input
                 type="number"
                 step="0.01"

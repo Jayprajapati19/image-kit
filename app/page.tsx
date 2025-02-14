@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <main className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">ImageKit Shop</h1>
+      <h1 className="text-3xl font-bold mb-8">ImageKit Shell</h1>
       <ImageGallery products={products} />
     </main>
   );

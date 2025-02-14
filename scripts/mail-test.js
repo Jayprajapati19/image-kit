@@ -41,7 +41,7 @@ try {
       "- Product: " + mockOrder.productId.name,
       "- Version: " + mockOrder.variant.type,
       "- License: " + mockOrder.variant.license,
-      "- Price: $" + mockOrder.amount.toFixed(2),
+      "- Price: ₹" + mockOrder.amount.toFixed(2),
       "",
       "Your image is now available in your orders page.",
       "Thank you for shopping with ImageKit Shop!",

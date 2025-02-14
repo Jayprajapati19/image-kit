@@ -59,7 +59,7 @@ export default function ProductCard({ product }: { product: IProduct }) {
         <div className="card-actions justify-between items-center mt-2">
           <div className="flex flex-col">
             <span className="text-lg font-bold">
-              From ${lowestPrice.toFixed(2)}
+              From ₹{lowestPrice.toFixed(2)}
             </span>
             <span className="text-xs text-base-content/50">
               {product.variants.length} sizes available
