@@ -65,11 +65,16 @@ class ApiClient {
       productId: orderData.productId.toString(),
     };
 
+<<<<<<< HEAD
     return this.fetch<{ orderId: string; amount: number; currency: string; dbOrderId: string }>("/orders", {
+=======
+    return this.fetch<{ orderId: string; amount: number }>("/orders", {
+>>>>>>> 96aa89a40aa094abbb670332ae6546d952b84300
       method: "POST",
       body: sanitizedOrderData,
     });
   }
+<<<<<<< HEAD
 
   async verifyOrder(data: {
     razorpayPaymentId: string;
@@ -81,6 +86,8 @@ class ApiClient {
       body: data,
     });
   }
+=======
+>>>>>>> 96aa89a40aa094abbb670332ae6546d952b84300
 }
 
 export const apiClient = new ApiClient();

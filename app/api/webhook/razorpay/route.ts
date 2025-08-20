@@ -8,6 +8,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.text();
     const signature = req.headers.get("x-razorpay-signature");
+<<<<<<< HEAD
     const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
 
     if (!webhookSecret) {
@@ -37,13 +38,26 @@ export async function POST(req: NextRequest) {
         bodyLength: body.length,
         eventPreview: body.slice(0, 120).replace(/\n/g, " ") + (body.length > 120 ? "..." : ""),
       });
+=======
+
+    const expectedSignature = crypto
+      .createHmac("sha256", process.env.RAZORPAY_WEBHOOK_SECRET!)
+      .update(body)
+      .digest("hex");
+
+    if (signature !== expectedSignature) {
+>>>>>>> 96aa89a40aa094abbb670332ae6546d952b84300
       return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
     }
 
     const event = JSON.parse(body);
     await connectToDatabase();
 
+<<<<<<< HEAD
   if (event.event === "payment.captured") {
+=======
+    if (event.event === "payment.captured") {
+>>>>>>> 96aa89a40aa094abbb670332ae6546d952b84300
       const payment = event.payload.payment.entity;
 
       const order = await Order.findOneAndUpdate(
@@ -68,8 +82,12 @@ export async function POST(req: NextRequest) {
           },
         });
 
+<<<<<<< HEAD
   const baseUrl = process.env.NEXTAUTH_URL || process.env.PUBLIC_SITE_URL || "http://localhost:3000";
   await transporter.sendMail({
+=======
+        await transporter.sendMail({
+>>>>>>> 96aa89a40aa094abbb670332ae6546d952b84300
           from: '"ImageKit Shop" <noreply@imagekitshop.com>',
           to: order.userId.email,
           subject: "Payment Confirmation - ImageKit Shop",
@@ -83,11 +101,16 @@ Order Details:
 - License: ${order.variant.license}
 - Price: $${order.amount.toFixed(2)}
 
+<<<<<<< HEAD
 Your image is now available in your orders page:\n${baseUrl}/orders
+=======
+Your image is now available in your orders page.
+>>>>>>> 96aa89a40aa094abbb670332ae6546d952b84300
 Thank you for shopping with ImageKit Shop!
           `.trim(),
         });
       }
+<<<<<<< HEAD
     } else if (event.event === "payment.failed") {
       const payment = event.payload.payment.entity;
       await connectToDatabase();
@@ -99,6 +122,11 @@ Thank you for shopping with ImageKit Shop!
     }
 
   return NextResponse.json({ received: true });
+=======
+    }
+
+    return NextResponse.json({ received: true });
+>>>>>>> 96aa89a40aa094abbb670332ae6546d952b84300
   } catch (error) {
     console.error("Webhook error:", error);
     return NextResponse.json({ error: "Webhook failed" }, { status: 500 });
