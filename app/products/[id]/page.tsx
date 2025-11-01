@@ -63,17 +63,16 @@ export default function ProductPage() {
     }
 
     try {
-<<<<<<< HEAD
       // Ensure Razorpay script is loaded
       if (!(window as any).Razorpay) {
         await new Promise<void>((resolve, reject) => {
           const existing = document.querySelector(
             'script[src="https://checkout.razorpay.com/v1/checkout.js"]'
           );
-            if (existing) {
-              existing.addEventListener("load", () => resolve());
-              existing.addEventListener("error", () => reject());
-            } else {
+          if (existing) {
+            existing.addEventListener("load", () => resolve());
+            existing.addEventListener("error", () => reject());
+          } else {
             const script = document.createElement("script");
             script.src = "https://checkout.razorpay.com/v1/checkout.js";
             script.async = true;
@@ -83,19 +82,12 @@ export default function ProductPage() {
           }
         });
       }
-
-=======
->>>>>>> 96aa89a40aa094abbb670332ae6546d952b84300
       const { orderId, amount } = await apiClient.createOrder({
         productId: product._id,
         variant,
       });
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 96aa89a40aa094abbb670332ae6546d952b84300
+  // ...existing code...
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount,
@@ -103,7 +95,6 @@ export default function ProductPage() {
         name: "ImageKit Shop",
         description: `${product.name} - ${variant.type} Version`,
         order_id: orderId,
-<<<<<<< HEAD
         handler: async function (response: any) {
           try {
             await apiClient.verifyOrder({
@@ -116,16 +107,10 @@ export default function ProductPage() {
           } catch (e) {
             showNotification("Verification failed", "error");
           }
-=======
-        handler: function () {
-          showNotification("Payment successful!", "success");
-          router.push("/orders");
->>>>>>> 96aa89a40aa094abbb670332ae6546d952b84300
         },
         prefill: {
           email: session.user.email,
         },
-<<<<<<< HEAD
         theme: { color: "#6366F1" },
         modal: {
           ondismiss: function () {
@@ -133,9 +118,6 @@ export default function ProductPage() {
           },
         },
       } as any;
-=======
-      };
->>>>>>> 96aa89a40aa094abbb670332ae6546d952b84300
 
       const rzp = new (window as any).Razorpay(options);
       rzp.open();
